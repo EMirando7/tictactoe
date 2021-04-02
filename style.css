@@ -1,0 +1,35 @@
+*,
+html {
+	padding: 0;
+	margin: 0;
+}
+section {
+	width: 30em;
+	margin: 0 auto;
+	border: solid;
+	height: 25em;
+	position: relative;
+	top: 12em;
+	background-color: lightgray;
+}
+
+h1 {
+	text-align: center;
+	border-bottom: solid;
+}
+
+#ghost {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	width: 90%;
+	height: 80%;
+	top: 20px;
+	left: 23px;
+	grid-gap: 1px;
+}
+
+.squares {
+	background-color: whitesmoke;
+}
