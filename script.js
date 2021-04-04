@@ -10,9 +10,18 @@ const game = {
         })();
         //hears for clicks, changes to depending on which player clicks
         const toggleSymbol = (function () {
+            let turn = 0;
             boardXs.forEach(element => {
-                element.addEventListener('click', () => {
-                    element.innerHTML = "X"
+                element.addEventListener('click', function changeLetter() {
+                    if (turn % 2 == 0) {
+                        element.innerHTML = "O";
+                    }
+                    else {
+                        element.innerHTML = "X"
+                    }
+                    turn++;
+                    //After click, remove changeLetter handler for any iteration
+                    element.removeEventListener('click', changeLetter);
                 })
             });
         })()
