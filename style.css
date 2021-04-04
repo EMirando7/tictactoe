@@ -30,7 +30,26 @@ h1 {
 	grid-gap: 1px;
 }
 
-#ghost > div {
+/* boxes style, excludes box letter style */
+/* #ghost > div {
+	color: black;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 5em;
+	font-weight: bold;
+	text-align: center;
+	background-color: whitesmoke;
+} */
+/*  box letter styling */
+.letterO {
+	color: black;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 5em;
+	font-weight: bold;
+	text-align: center;
+	background-color: whitesmoke;
+}
+
+.letterX{
 	color: black;
 	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 5em;
