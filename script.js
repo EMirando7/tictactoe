@@ -1,5 +1,15 @@
 const game = {
-    //invoke initalize
+    players: {
+        getNamesFromUsers: function () {
+            let player1 = prompt("Player 1 name");
+            let player2 = prompt("Player 2 name");
+            return [player1, player2];
+        },
+        conLog: function () {
+            let [player1, player2] = this.getNamesFromUsers();
+            console.log(player1, player2)
+        }
+    },
     initialize: (function () {
         let boardXs = document.querySelectorAll('#ghost > div');
         //hides the X from board
@@ -24,10 +34,9 @@ const game = {
                     element.removeEventListener('click', changeLetter);
                 })
             });
-        })()
-    }),
-    players: function (player) {
-        //return what what is to be used in the newly created object
-        return { player }
-    }
+        })();
+    })
 }
+
+game.initialize();
+game.players.conLog()
