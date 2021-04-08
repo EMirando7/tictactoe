@@ -5,9 +5,20 @@ const game = {
             let player2 = prompt("Player 2 name");
             return [player1, player2];
         },
-        conLog: function () {
+        buildPlayerNameRows: function () {
+            //vars from parent object scope -----------
             let [player1, player2] = this.getNamesFromUsers();
-            console.log(player1, player2)
+            let playerInterfaceParent = document.getElementById('playerInterface');
+            // add text on each player ----------------------->
+            let player1Square = document.getElementById('player1');
+            player1Square.innerHTML = `Player 1 <br> ${player1}`
+            let player2Square = document.getElementById('player2');
+            player2Square.innerHTML = `Player 2 <br> ${player2}`
+            // ------------------------------------------------>
+            //expand the grid ---------------------------------->
+            // playerInterfaceParent.style.gridTemplateRows = '1fr 1fr';
+
+
         }
     },
     initialize: (function () {
@@ -39,4 +50,4 @@ const game = {
 }
 
 game.initialize();
-game.players.conLog()
+game.players.buildPlayerNameRows()
