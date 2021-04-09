@@ -8,17 +8,20 @@ const game = {
         buildPlayerNameRows: function () {
             //vars from parent object scope -----------
             let [player1, player2] = this.getNamesFromUsers();
-            let playerInterfaceParent = document.getElementById('playerInterface');
             // add text on each player ----------------------->
             let player1Square = document.getElementById('player1');
-            player1Square.innerHTML = `Player 1 <br> ${player1}`
+            player1Square.innerHTML = `Player 1 <br> ${player1}`;
             let player2Square = document.getElementById('player2');
-            player2Square.innerHTML = `Player 2 <br> ${player2}`
-            // ------------------------------------------------>
-            //expand the grid ---------------------------------->
-            // playerInterfaceParent.style.gridTemplateRows = '1fr 1fr';
-
-
+            player2Square.innerHTML = `Player 2 <br> ${player2}`;
+            // ----------------------------->      
+            //color the colorelems and add borders
+            const player1Color = document.getElementById('player1Color');
+            player1Color.style.borderLeft = 'solid';
+            player1Color.style.backgroundColor = ' red';
+            player1Color.style.borderBottom = 'solid'
+            const player2Color = document.getElementById('player2Color');
+            player2Color.style.borderLeft = 'solid';
+            player2Color.style.backgroundColor = 'blue';
         }
     },
     initialize: (function () {

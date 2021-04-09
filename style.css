@@ -25,6 +25,10 @@ html {
 	width: 10em;
 	height: 150px;
 }
+
+#playerInterface > div {
+	font-size: x-large;
+}
 #playerInterface > div:first-child {
 	border-bottom: solid;
 }
