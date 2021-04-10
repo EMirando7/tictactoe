@@ -41,15 +41,41 @@ const game = {
                         element.innerHTML = "O";
                     }
                     else {
-                        element.innerHTML = "X"
+                        element.innerHTML = "X";
                     }
                     turn++;
                     //After click, remove changeLetter handler for any iteration
                     element.removeEventListener('click', changeLetter);
-                })
+                });
             });
+            //! currently here
+            boardXs.forEach((element) => {
+                element.addEventListener('click', function addToArr() {
+                    let boardXsArr = [...boardXs];
+                    if (boardXsArr.indexOf(element) === 0 || boardXsArr.indexOf(element) === 1 || boardXsArr.indexOf(element) === 2) {
+                        inputArr.topRow.push(element.innerText)
+                    }
+                    else if (boardXsArr.indexOf(element) === 3 || boardXsArr.indexOf(element) === 4 || boardXsArr.indexOf(element) === 5) {
+                        inputArr.middleRow.push(element.innerText)
+                    }
+                    else {
+                        inputArr.bottomRow.push(element.innerText)
+                    }
+                });
+            })
         })();
-    })
+        let inputArr = {
+            topRow: [],
+            middleRow: [],
+            bottomRow: []
+        }
+    }),
+    // innerHTML.includes()
+    finalize: {
+        straightWin: function () {
+            //building
+        }
+    }
 }
 
 game.initialize();
