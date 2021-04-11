@@ -24,7 +24,7 @@ const game = {
             player2Color.style.backgroundColor = 'blue';
         }
     },
-    initialize: (function () {
+    initialize: function () {
         let boardXs = document.querySelectorAll('#ghost > div');
         //hides the X from board
         const resultX = (function hideX() {
@@ -48,8 +48,8 @@ const game = {
                     element.removeEventListener('click', changeLetter);
                 });
             });
-            //! currently here
             boardXs.forEach((element) => {
+                //* this is the reason why inputArr is in initalize() scope
                 element.addEventListener('click', function addToArr() {
                     let boardXsArr = [...boardXs];
                     if (boardXsArr.indexOf(element) === 0 || boardXsArr.indexOf(element) === 1 || boardXsArr.indexOf(element) === 2) {
@@ -69,14 +69,28 @@ const game = {
             middleRow: [],
             bottomRow: []
         }
-    }),
-    // innerHTML.includes()
+        return inputArr;
+    },
     finalize: {
-        straightWin: function () {
-            //building
+        winGame: function () {
+            // debugger;
+            //! reason why finalize() deletes the symbols in board, running initialize again
+            //TODO get inputArr from initalize or define it here
+            let inputArr = game.initialize();
+            console.log(inputArr.topRow)
+            //find way to assign to a var all the top row
+            let squareChooser = document.getElementById('ghost').children;
+            let topRowOutcomes = (function () {
+                for (let i = 0; i < inputArr.topRow.length; i++) {
+                    if (inputArr.topRow[i] == 'O') {
+                        console.log('Player 1 wins')
+                    }
+                }
+            })()
         }
     }
 }
+let testo = 'hi'
 
 game.initialize();
-game.players.buildPlayerNameRows()
+// game.players.buildPlayerNameRows()
