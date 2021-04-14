@@ -26,12 +26,6 @@ const game = {
     },
     initialize: function () {
         let boardXs = document.querySelectorAll('#ghost > div');
-        //hides the X from board
-        const resultX = (function hideX() {
-            for (let i = 0; i < boardXs.length; i++) {
-                boardXs[i].innerHTML = " ";
-            }
-        })();
         //hears for clicks, changes to depending on which player clicks
         const toggleSymbol = (function () {
             let turn = 0;
@@ -48,49 +42,79 @@ const game = {
                     element.removeEventListener('click', changeLetter);
                 });
             });
-            boardXs.forEach((element) => {
-                //* this is the reason why inputArr is in initalize() scope
-                element.addEventListener('click', function addToArr() {
-                    let boardXsArr = [...boardXs];
-                    if (boardXsArr.indexOf(element) === 0 || boardXsArr.indexOf(element) === 1 || boardXsArr.indexOf(element) === 2) {
-                        inputArr.topRow.push(element.innerText)
-                    }
-                    else if (boardXsArr.indexOf(element) === 3 || boardXsArr.indexOf(element) === 4 || boardXsArr.indexOf(element) === 5) {
-                        inputArr.middleRow.push(element.innerText)
-                    }
-                    else {
-                        inputArr.bottomRow.push(element.innerText)
-                    }
-                });
-            })
         })();
-        let inputArr = {
-            topRow: [],
-            middleRow: [],
-            bottomRow: []
-        }
-        return inputArr;
     },
-    finalize: {
-        winGame: function () {
-            // debugger;
-            //! reason why finalize() deletes the symbols in board, running initialize again
-            //TODO get inputArr from initalize or define it here
-            let inputArr = game.initialize();
-            console.log(inputArr.topRow)
-            //find way to assign to a var all the top row
-            let squareChooser = document.getElementById('ghost').children;
-            let topRowOutcomes = (function () {
-                for (let i = 0; i < inputArr.topRow.length; i++) {
-                    if (inputArr.topRow[i] == 'O') {
-                        console.log('Player 1 wins')
-                    }
-                }
-            })()
-        }
+    finalize: function () {
+        let topRow = document.querySelectorAll('#ghost div:nth-child(n+1):nth-child(-n+3)');
+        let middleRow = document.querySelectorAll('#ghost div:nth-child(n+4):nth-child(-n+6)');
+        let bottomRow = document.querySelectorAll('#ghost div:nth-child(n+7):nth-child(-n+9)');
+        let checkO = elem => elem.innerText == 'O';
+        let checkX = elem => elem.innerText == 'X';
+        let topHorizontalOccurences = function () {
+            if ([topRow[0], topRow[1], topRow[2]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won')
+            }
+            else if ([topRow[0], topRow[1], topRow[2]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won')
+            }
+        };
+        let middleHorizontalOccurences = function () {
+            if ([middleRow[0], middleRow[1], middleRow[2]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won, middle')
+            }
+            else if ([middleRow[0], middleRow[1], middleRow[2]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won, middle')
+            }
+        };
+        let bottomHorizontalOccurences = function () {
+            if ([bottomRow[0], bottomRow[1], bottomRow[2]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won, bottom')
+            }
+            else if ([bottomRow[0], bottomRow[1], bottomRow[2]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won, bottom')
+            };
+        };
+        let leftVerticalOccurences = function () {
+            if ([topRow[0], middleRow[0], bottomRow[0]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won, left vertical')
+            }
+            else if ([topRow[0], middleRow[0], bottomRow[0]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won, left vertical')
+            }
+        };
+        let middleVerticalOccurences = function () {
+            if ([topRow[1], middleRow[1], bottomRow[1]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won, middle vertical')
+            }
+            else if ([topRow[1], middleRow[1], bottomRow[1]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won, middle vertical')
+            }
+        };
+        let rightVerticalOccurences = function () {
+            if ([topRow[2], middleRow[2], bottomRow[2]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 Won, right vertical')
+            }
+            else if ([topRow[2], middleRow[2], bottomRow[2]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 won, right vertical')
+            }
+        };
+        let left2RightDiagonal = function () {
+            if ([topRow[0], middleRow[1], bottomRow[2]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 wins, diag')
+            }
+            else if ([topRow[0], middleRow[1], bottomRow[2]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 wins, diag')
+            }
+        };
+        let right2LeftDiagonal = function () {
+            if ([topRow[2], middleRow[1], bottomRow[0]].every(elem => checkO(elem) == true)) {
+                console.log('Player 1 wins, diag 2')
+            }
+            else if ([topRow[2], middleRow[1], bottomRow[0]].every(elem => checkX(elem) == true)) {
+                console.log('Player 2 wins, diag 2')
+            }
+        };
     }
 }
-let testo = 'hi'
-
 game.initialize();
-// game.players.buildPlayerNameRows()
+game.players.buildPlayerNameRows()
