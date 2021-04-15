@@ -49,9 +49,6 @@ const game = {
         })();
     },
     finalize: function () {
-        let player1 = document.getElementById('player1').textContent;
-        let player2 = document.getElementById('player2').textContent;
-        let gameBoard = document.getElementById('ghost');
         let finishedGame = false
         let topRow = document.querySelectorAll('#ghost div:nth-child(n+1):nth-child(-n+3)');
         let middleRow = document.querySelectorAll('#ghost div:nth-child(n+4):nth-child(-n+6)');
