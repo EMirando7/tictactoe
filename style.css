@@ -57,16 +57,6 @@ h1 {
 	left: 23px;
 	grid-gap: 1px;
 }
-
-/* boxes style, excludes box letter style */
-/* #ghost > div {
-	color: black;
-	font-family: "Helvetica", "Arial", sans-serif;
-	font-size: 5em;
-	font-weight: bold;
-	text-align: center;
-	background-color: whitesmoke;
-} */
 /*  box letter styling */
 .letterO {
 	color: black;
